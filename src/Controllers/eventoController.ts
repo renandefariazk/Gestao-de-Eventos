@@ -28,7 +28,7 @@ export default class eventoController {
       const user = this.jwtToken.decode(token as string);
       const {name, valor, type, local, ingresso} = req.body;
       // verificar se o usuario tem a Role de Admin
-      if(user.role = "admin"){
+      if(user.role == "admin"){
         await this.service.create({name, valor, type, local, ingresso});
         res.status(200).send("Evento Criado com Sucesso");
       } else{

@@ -65,4 +65,16 @@ export class userService {
       throw new Error(err.message);
     }
   }
+
+  async addSaldo(user_id:number, saldo:number){
+    try{
+      const carteira:any = await this.carteiraRepository.addSaldo({user_id, saldo});
+      if(!carteira){
+        throw new Error("Carteira não Encontrada");
+      }
+      return carteira;
+    } catch(err:any){
+      throw new Error(err.message);
+    }
+  }
 }

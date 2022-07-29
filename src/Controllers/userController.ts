@@ -10,6 +10,7 @@ export default class userController {
     this.show = this.show.bind(this);
     this.create = this.create.bind(this);
     this.login = this.login.bind(this);
+    this.addSaldo = this.addSaldo.bind(this);
   }
 
   async show(req:Request, res:Response){
@@ -43,6 +44,15 @@ export default class userController {
       const { password, email} = req.body;
       const login = await this.service.login({email, password});
       res.status(200).send(login);
+    } catch (err:any) {
+      res.status(500).send(err.message);
+    }
+  }
+  async addSaldo(req:Request, res:Response){
+    try{
+      const { user_id, saldo } = req.body;
+      const carteira = await this.service.addSaldo(user_id, saldo);
+      res.status(200).send(carteira);
     } catch (err:any) {
       res.status(500).send(err.message);
     }

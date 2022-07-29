@@ -25,11 +25,11 @@ export default class historicoController {
     try{
       const token = req.headers.authorization;
       const user = this.jwtToken.decode(token as string);
-      if(user.role = "admin"){
+      if(user.role == "admin"){
         const historico = await this.service.index();
         res.status(200).send(historico);
       } else{
-        throw new Error("Nenhum Evento Encontrado");
+        throw new Error("Sem permissão de Realizar essa ação");
       }
     }catch(err:any){
       res.status(500).send(err.message);
