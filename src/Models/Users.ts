@@ -8,6 +8,7 @@ interface UsersAttributes {
 	email: string;
   name: string;
   password: string;
+  role: string;
   telefone?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -17,6 +18,7 @@ class User extends Model<UsersAttributes> implements UsersAttributes {
   public id!: number
   public email!: string
   public name!: string
+  public role!: string
   public password!: string
   public telefone!: string
 
@@ -43,6 +45,9 @@ User.init({
     type: DataTypes.STRING
   },
   telefone: {
+    type: DataTypes.STRING
+  },
+  role: {
     type: DataTypes.STRING
   }
 }, {

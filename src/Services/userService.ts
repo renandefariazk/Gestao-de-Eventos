@@ -1,14 +1,22 @@
 import { Icreate, Ifind, Ilogin } from "../interfaces/user";
 import { userRepository } from "../Repository/userRepository";
+import { carteiraRepository } from "../Repository/carteiraRepository";
+import { jwtToken } from "../middleware/jwt";
 
 export class userService {
   public repository;
+  public jwtToken;
+  public carteiraRepository;
+
   constructor(){
     this.repository = new userRepository();
+    this.jwtToken = new jwtToken();
+    this.carteiraRepository = new carteiraRepository();
   }
   async create(data:Icreate){
     try{
-      await this.repository.create(data);
+      const user:any = await this.repository.create(data);
+      await this.carteiraRepository.create(user.id, 0);
     } catch(err:any){
       throw new Error(err.message);
     }
@@ -20,8 +28,15 @@ export class userService {
       if(!user){
         throw new Error("Credenciais Invalidas");
       }
-      // gerar Token e enviar
-      return user;
+      const userStringify = JSON.stringify(user);
+      const userJson = JSON.parse(userStringify);
+      const token = this.jwtToken.createToken({
+        id: userJson.id,
+        name:userJson.name,
+        email: userJson.email,
+        role: userJson.role
+      });
+      return token;
     } catch(err:any){
       throw new Error(err.message);
     }

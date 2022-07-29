@@ -5,7 +5,7 @@ export default class homeController {
     try{
       res.send("Projeto Funcionando");
     }catch(err:any){
-      res.status(200).send(err.message);
+      res.status(500).send(err.message);
     }
   }
 }

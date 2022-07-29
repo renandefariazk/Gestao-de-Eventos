@@ -9,8 +9,9 @@ module.exports = {
         autoIncrement: true
       },
       saldo:{
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0
       },
       user_id:{
         type:Sequelize.INTEGER,

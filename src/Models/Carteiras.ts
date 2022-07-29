@@ -4,7 +4,7 @@ import { User } from "./Users";
 
 interface CarteiraAttributes {
   id?: number;
-	saldo: string;
+	saldo: number;
   user_id: number;
   createdAt?: Date;
   updatedAt?: Date;
@@ -12,7 +12,7 @@ interface CarteiraAttributes {
 
 class Carteira extends Model<CarteiraAttributes> implements CarteiraAttributes {
   public id!: number
-  public saldo!: string
+  public saldo!: number
   public user_id!: number
   public password!: string
   public telefone!: string

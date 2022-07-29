@@ -11,7 +11,7 @@ export class userRepository{
 
   async create(data:Icreate){
     try{
-      await this.model.create(data);
+      return await this.model.create(data);
     } catch(err:any){
       throw new Error(err.message);
     }

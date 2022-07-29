@@ -1,6 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelizeConnection from '../config/database';
 import { Evento } from "./Eventos"
+import { User } from './Users';
 
 interface HistoricoAttributes {
   id?: number;
